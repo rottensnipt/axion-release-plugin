@@ -40,7 +40,7 @@ class RemoteRejectionTest extends Specification {
         repository.commit(['*'], 'commit after release-custom')
 
         when:
-        ScmPushResult result = repository.push(ScmIdentity.defaultIdentityWithoutAgents(), new ScmPushOptions(remote: 'origin', pushTagsOnly: false), true)
+        ScmPushResult result = repository.push(ScmIdentity.defaultIdentityWithoutAgents(), new ScmPushOptions('origin', false), true)
 
         then:
         !result.success
