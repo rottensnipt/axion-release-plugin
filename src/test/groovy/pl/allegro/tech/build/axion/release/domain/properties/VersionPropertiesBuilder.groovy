@@ -13,6 +13,10 @@ class VersionPropertiesBuilder {
 
     private boolean useHighestVersion = false
 
+    private Closure<String> versionCreator = PredefinedVersionCreator.SIMPLE.versionCreator
+
+    private boolean sanitizeVersion = true
+
     private VersionPropertiesBuilder() {
     }
 
@@ -22,13 +26,13 @@ class VersionPropertiesBuilder {
 
     VersionProperties build() {
         return new VersionProperties(
-                forcedVersion: forcedVersion,
-                forceSnapshot: forceSnapshot,
-                ignoreUncommittedChanges: ignoreUncommittedChanges,
-                versionCreator: PredefinedVersionCreator.SIMPLE.versionCreator,
-                versionIncrementer: PredefinedVersionIncrementer.versionIncrementerFor('incrementPatch'),
-                sanitizeVersion: true,
-                useHighestVersion: useHighestVersion)
+                forcedVersion,
+                forceSnapshot,
+                ignoreUncommittedChanges,
+                versionCreator,
+                PredefinedVersionIncrementer.versionIncrementerFor('incrementPatch'),
+                sanitizeVersion,
+                useHighestVersion)
     }
 
     VersionPropertiesBuilder forceVersion(String version) {
@@ -49,5 +53,15 @@ class VersionPropertiesBuilder {
     VersionPropertiesBuilder useHighestVersion() {
       this.useHighestVersion = true
       return this
+    }
+
+    VersionPropertiesBuilder withVersionCreator(Closure<String> creator) {
+        this.versionCreator = creator
+        return this
+    }
+
+    VersionPropertiesBuilder dontSanitizeVersion() {
+        this.sanitizeVersion = false
+        return this
     }
 }

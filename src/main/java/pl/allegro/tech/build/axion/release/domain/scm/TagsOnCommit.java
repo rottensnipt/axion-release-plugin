@@ -33,7 +33,7 @@ public class TagsOnCommit {
         return tags;
     }
 
-    public final boolean isIsHead() {
+    public final boolean isHead() {
         return isHead;
     }
 }

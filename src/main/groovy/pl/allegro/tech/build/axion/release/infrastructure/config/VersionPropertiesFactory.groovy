@@ -37,13 +37,13 @@ class VersionPropertiesFactory {
         boolean useHighestVersion = project.hasProperty(USE_HIGHEST_VERSION_PROPERTY) ?: config.useHighestVersion
 
         return new VersionProperties(
-                forcedVersion: forceVersionValue?.trim() ? forceVersionValue.trim() : null,
-                forceSnapshot: forceSnapshot,
-                ignoreUncommittedChanges: ignoreUncommittedChanges,
-                versionCreator: findVersionCreator(project, config, currentBranch),
-                versionIncrementer: findVersionIncrementer(project, config, currentBranch),
-                sanitizeVersion: config.sanitizeVersion,
-                useHighestVersion: useHighestVersion
+                forceVersionValue?.trim() ? forceVersionValue.trim() : null,
+                forceSnapshot,
+                ignoreUncommittedChanges,
+                findVersionCreator(project, config, currentBranch),
+                findVersionIncrementer(project, config, currentBranch),
+                config.sanitizeVersion,
+                useHighestVersion
         )
     }
 
