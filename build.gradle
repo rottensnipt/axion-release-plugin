@@ -29,7 +29,7 @@ scmVersion {
     versionCreator 'versionWithBranch'
 }
 
-group = 'pl.allegro.tech.build'
+group = 'com.rottensnipt.gradle'
 version = scmVersion.version
 
 sourceCompatibility = '1.7'
